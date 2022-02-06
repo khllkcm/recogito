@@ -24,27 +24,9 @@ HTMLWidgets.widget({
         r.on('createAnnotation', function(a) {
           Shiny.setInputValue(x.inputId, JSON.stringify(r.getAnnotations()));
         });
-        //var toggleModeBtn = document.getElementById('toggle-mode');
-        var toggleModeBtn = document.getElementById(el.id.concat("-toggle"));
-        //var annotationMode = 'ANNOTATION';
-        //r.setMode(annotationMode);
-        annotationMode = toggleModeBtn.innerHTML;
-        if (annotationMode === 'MODE: RELATIONS') {
-          annotationMode = 'RELATIONS';
-        } else  {
-          annotationMode = 'ANNOTATION';
-        }
-        toggleModeBtn.addEventListener('click', function() {
-          if (annotationMode === 'ANNOTATION') {
-            toggleModeBtn.innerHTML = 'MODE: RELATIONS';
-            annotationMode = 'RELATIONS';
-          } else  {
-            toggleModeBtn.innerHTML = 'MODE: ANNOTATION';
-            annotationMode = 'ANNOTATION';
-          }
-          r.setMode(annotationMode);
+        Shiny.addCustomMessageHandler(type = 'send-clear', function(message) {
+          Shiny.setInputValue(x.inputId, JSON.stringify(r.clearAnnotations()));
         });
-        //r.refresh();
       },
       resize: function(width, height) {
       }
