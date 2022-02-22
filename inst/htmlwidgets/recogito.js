@@ -14,7 +14,7 @@ HTMLWidgets.widget({
           formatter: formatter,
           widgets: [
             'COMMENT',
-            { widget: 'TAG', vocabulary: x.tags }
+            { widget: 'TAG'}
           ],
           readOnly: false
         });
