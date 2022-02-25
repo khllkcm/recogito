@@ -14,7 +14,8 @@ HTMLWidgets.widget({
           formatter: formatter,
           widgets: [
             'COMMENT',
-            recogito.FlagWidget
+            recogito.FlagWidget,
+            'TAG'
           ],
           readOnly: false
         });
