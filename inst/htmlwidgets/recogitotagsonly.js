@@ -12,6 +12,7 @@ HTMLWidgets.widget({
           content: el.parentNode.id,
           mode: x.mode,
           formatter: formatter,
+          
           widgets: [
             'COMMENT',
             recogito.FlagWidget,
@@ -25,6 +26,11 @@ HTMLWidgets.widget({
         r.on('createAnnotation', function(a) {
           Shiny.setInputValue(x.inputId, JSON.stringify(r.getAnnotations()));
         });
+        
+        document.getElementById('hiddenSelectedWord').addEventListener('change', 
+          e => Shiny.setInputValue("selectedWord",e.target.value, {priority: "event"})
+        );
+        
         r.setMode('ANNOTATION')
       },
       resize: function(width, height) {
