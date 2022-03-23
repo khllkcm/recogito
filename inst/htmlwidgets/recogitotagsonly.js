@@ -26,6 +26,11 @@ HTMLWidgets.widget({
         r.on('createAnnotation', function(a) {
           Shiny.setInputValue(x.inputId, JSON.stringify(r.getAnnotations()));
         });
+
+        r.on('deleteAnnotation', function(a) {
+          Shiny.setInputValue("annotDeleted", 
+            {start:a.target.selector[1].start, end:a.target.selector[1].end}, {priority: "event"});
+        });
         
         document.getElementById('hiddenSelectedWord').addEventListener('change', 
           e => Shiny.setInputValue("selectedWord",e.target.value, {priority: "event"})
